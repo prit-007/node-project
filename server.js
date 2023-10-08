@@ -54,15 +54,23 @@ mongoose.connect(conString)
 
         //add New
         app.post('/', async (req, res) => {
-            const personData = req.body;
             try {
+                const personData = req.body;
+            
+                // Generate a new ObjectId
+                const objectId = new ObjectId();
+            
+                // Add the generated ObjectId to the personData
+                personData._id = objectId;
+            
                 const newPerson = new Person(personData);
+            
                 await newPerson.save();
-                res.json(newPerson);
-            } catch (error) {
+                res.status(201).json(newPerson);
+              } catch (error) {
                 console.error('Error:', error);
                 res.status(500).json({ error: 'Internal Server Error' });
-            }
+              }
         });
 
         //Update Person
