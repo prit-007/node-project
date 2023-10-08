@@ -1,6 +1,5 @@
 const express = require('express');
 require('dotenv').config();
-const person = require('./person');
 const bodyParser = require('body-parser');
 const conString = process.env.DATABASE_URL;
 const { ObjectId } = require('mongoose').Types;
